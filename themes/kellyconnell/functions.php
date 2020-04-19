@@ -43,43 +43,8 @@ add_theme_support ( 'post-thumbnails' );
     }
     add_filter('the_content', 'filter_ptags_on_images');
 
-
-	/* Truncate Page & Post WYSIWYG Content
-	/* Use <?php echo content(20); ?> In The Template
+	/* Create Sidebar
 	=============================================== */
-function content($limit) {
-  $content = explode(' ', get_the_content(), $limit);
-  if (count($content)>=$limit) {
-    array_pop($content);
-    $content = implode(" ",$content).'...';
-  } else {
-    $content = implode(" ",$content);
-  }
-  $content = preg_replace('/\[.+\]/','', $content);
-  $content = apply_filters('the_content ', $content);
-  $content = str_replace(']]>', ']]>', $content);
-  return $content;
-}
-//Link Excerpt to post
-function new_excerpt_more( $more ) {
-	return ' <a class="read-more" href="'. get_permalink( get_the_ID() ) . '">' . __('...more <i class="fa fa-angle-double-right"></i>', 'your-text-domain') . '</a>';
-}
-
-add_filter( 'excerpt_more', 'new_excerpt_more' );
-
-function create_widget( $name, $id, $description ) {
-
-	register_sidebar(array(
-		'name' => __( $name ),	 
-		'id' => $id, 
-		'description' => __( $description ),
-		'before_widget' => '<div class="widget">',
-		'after_widget' => '</div>',
-		'before_title' => '<h3>',
-		'after_title' => '</h3>'
-	));
-}
-
-create_widget( 'Page Sidebar', 'page', 'Displays on the side of pages with a sidebar' );
+	create_widget( 'Page Sidebar', 'page', 'Displays on the side of pages with a sidebar' );
 
 ?>
