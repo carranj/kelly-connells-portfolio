@@ -19,7 +19,8 @@ function theme_js() {
 	$wp_scripts->add_data( 'html5_shiv', 'conditional', 'lt IE 9' );
 	$wp_scripts->add_data( 'respond_js', 'conditional', 'lt IE 9' );
 
-	wp_enqueue_script('bootstrap_js', get_template_directory_uri() . 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js', array('jquery'), '',true );
+	wp_enqueue_script('bootstrap_js', 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js', array('jquery'), '4.4.1',true );
+	wp_enqueue_script('howler_js', 'https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.3/howler.core.min.js', array(), '2.1.3',true );
 	wp_enqueue_script('theme_js', get_template_directory_uri() . '/js/theme.js', array('bootstrap_js'), '',true );	 
 }
 add_action( 'wp_enqueue_scripts', 'theme_js');
@@ -43,8 +44,5 @@ add_theme_support ( 'post-thumbnails' );
     }
     add_filter('the_content', 'filter_ptags_on_images');
 
-	/* Create Sidebar
-	=============================================== */
-	create_widget( 'Page Sidebar', 'page', 'Displays on the side of pages with a sidebar' );
 
 ?>
