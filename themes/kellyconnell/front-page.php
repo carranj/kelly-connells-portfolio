@@ -1,19 +1,15 @@
-<?php get_header(); ?>
-<?php get_sidebar(); ?>
-<div <?php post_class('container'); ?>>
-    <div class="row">
-        <div class="col-md-6 text-center">
-            <h1>Kelly Connell</h1>
+<?php 
+    get_header();
+    get_sidebar();
+    $image = get_field('featured_image'); 
+?>
+<div <?php post_class('container p-0'); ?>>
+    <div class="homelanding" style="background-image:url(<?php echo esc_url($image['url']) ?>); background-size:cover;">
+        <div class="home-content text-center">
+            <h2>Educator</h2>
+            <h2>Creative</h2>
+            <h2>Band Director</h2>
             <a href="#" title="Play video" class="play"></a>
-            <p>This is the homepage.</p>
-        </div>
-        <div class="col-md-6 p-0">
-        <?php 
-            $image = get_field('featured_image');
-            if( !empty( $image ) ): ?>
-            <img class="img-fluid" src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
-        <?php endif; ?>
-
         </div>
     </div>
 </div>
