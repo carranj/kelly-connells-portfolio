@@ -1,6 +1,5 @@
 <div class="sidebar">
 <nav class="d-none d-md-block sidebar">
-    <div class="sidebar-sticky">
     <div class="logo"><a href="<?php echo site_url('/'); ?>">Kelly Connell</a></div>
         <?php
             $args = array(
@@ -10,7 +9,6 @@
             );
             wp_nav_menu( $args );
         ?>
-    </div>
 </nav>
 
 	<?php if ( ! dynamic_sidebar ('page') ): ?>
