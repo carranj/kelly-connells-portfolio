@@ -13,7 +13,7 @@
         
             <?php 
                 $i = 0; 
-                $args = array( 'post_type' => 'teaching_materials', 'posts_per_page' => -1 );
+                $args = array( 'post_type' => 'research', 'posts_per_page' => -1 );
                 $the_query = new WP_Query( $args ); 
                 
                 if ( $the_query->have_posts() ) :
@@ -27,6 +27,7 @@
                         <p class="category">Category: <?php the_category( ', ', 'multiple' ); ?></p>
                             <?php
                                 if( have_rows('teaching_materials') ):
+                                   
 
                                     while ( have_rows('teaching_materials') ) : the_row();
                                     $image = get_sub_field('preview_image');
