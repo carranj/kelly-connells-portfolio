@@ -1,49 +1,48 @@
 <?php get_header(); ?>
-<div class="clear-fix"></div>
-<div class="col-md-12 paddingNone internalPagesImageDiv" style="background-image: url(<?php echo site_url(); ?>/wp-content/uploads/2015/12/internalpage-pullups-height530px.jpg);">  
-  <section class="text-center internalPagesTitle">
-    <h1><?php the_title(); ?></h1>  
-  </section>
-</div>
-<div class="clear-fix"></div>
+<?php get_sidebar(); ?>
+
 
 <div class="container blogContainer marginTop30px">
-      <div class="col-md-9 paddingLeftNone paddingRightNoneMobile">
-      <?php if ( 'success-stories' == get_post_type() ) { ?>
-          <a href="../"><i class="fa fa-chevron-left"></i> Back To Success Stories</a>
-      <?php } else { ?>
-            <a href="<?php echo site_url('blog'); ?>"><i class="fa fa-chevron-left"></i> Back To Blog</a>
-      <?php } ?>
-        <br /><br />
+<div class="jumbotron">
+  <h1 class="text-center"><?php wp_title(''); ?></h1>
+</div>
+    <div class="row">
+      <div class="col-md-12">
+
         <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-        
-        <h2><?php the_title(); ?></h2>
-        <p><em><?php echo the_time ('l, F jS, Y');?></em></p>
-        
-        <?php the_content(); ?>
-         <p><em>Share this article:</em> <a href="http://www.facebook.com/sharer.php?u=" target="_blank"> <i class="fa fa-facebook-square"></i></a> 
-            <a href="http://twitter.com/share?url=&text=" target="_blank"> <i class="fa fa-twitter-square"></i></a> 
-          </p>
+
+          <?php  if( have_rows('teaching_materials') ): while ( have_rows('teaching_materials') ) : the_row(); 
+          $file = get_sub_field('teaching_resource_file');
+          $url = $file['url'];
+          ?>
+            <p><?php the_sub_field('teaching_resource_description'); ?></p>
             <div class="featured-img-section">
-            <?php 
-            if ( has_post_thumbnail() ) {
-            ?>  <a href="<?php the_permalink(); ?>"><?php the_post_thumbnail(); ?></a>
-            <?php
-            }
-            ?>
+              <object data="<?php echo esc_html($url); ?>" type="application/pdf" width="100%" height="800px">
+                  <embed src="<?php echo esc_html($url); ?>" type="application/pdf">
+                      <p>This browser does not support PDFs. Please download the PDF to view it: <a href="<?php echo esc_html($url); ?>">Download PDF</a>.</p>
+                  </embed>
+              </object>
             </div>
+          <?php endwhile; endif;?>
+
       <?php endwhile; else: ?>
-        
-
           <h1>Oh No!</h1>
-        <p>No Content is appearing for this page!</p>
+          <p>No Content is appearing for this page!</p>
+      <?php endif; ?>
+      </div>
+    </div>
 
-        <?php endif; ?>
 
       </div>
 
-  <?php get_sidebar(); ?>
+
+
+
+
+
 
 </div>
+
+
 
 <?php get_footer(); ?> 

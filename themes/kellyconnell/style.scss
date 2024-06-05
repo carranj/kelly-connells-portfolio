@@ -19,11 +19,10 @@ Imports
 /**************************************************************************************************
 Variables
 ***************************************************************************************************/
-$admin-bar-height:32px;
 $sidebar-width:230px;
 
-$play-btn-background:#f9f9f9;
-$play-btn-foreground:#2c3e50;
+$play-btn-background:#000000;
+$play-btn-foreground:#FFFFFF;
 $play-btn-size:15px;
 $play-btn-ratio:1.1;
 $play-btn-transition-time:0.3s;
@@ -37,17 +36,12 @@ Universal
 body {
 	font-family: 'Work Sans', sans-serif;
 	font-weight: 300;
-	color:#212529;
-	&.logged-in {
-		#wrapper{
-			margin-top:$admin-bar-height;
-			.sidebar{
-				margin-top:$admin-bar-height;
-			}
-		}
-	}
-	.container{
+	background:#0c0c0e;
+	color:#FFFFFF;
+	.container-fluid{
 		min-height: calc(100vh - 54px);
+		background: rgb(0,0,0);
+		background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(43,42,46,1) 119%, rgba(38,38,38,1) 100%);
 		img{
 			width:100%;
 			height:auto;
@@ -60,6 +54,7 @@ header{
 	}
 }
 footer{
+	background:
 	p{
 		margin:15px 0;
 		font-size: 16px;
@@ -72,6 +67,15 @@ footer{
 	text-align: center;
 }
 #wrapper {
+	@media only screen and (max-width: 767px){
+		padding-left:0;
+		&.active{
+			padding-left:$sidebar-width;
+		}
+	}
+	&.active{
+		padding-left:0;
+	}
 	padding-left: $sidebar-width;
 	transition: all 0.5s ease;
 	position: relative;
@@ -83,12 +87,12 @@ h1,h2,h3,h4,h5,h6, p{
 	font-weight: 300;
 }
 h1{
-	font-weight:400;
+	font-weight:300;
 	font-size:60px;
 	padding:0 0 0 0;
 	display:inline-block;
 	margin:0 auto;
-	border-bottom:2px solid #5CCCCC;
+	border-bottom:1px solid #FFFFFF;
 }
 p{
 	font-size:20px;
@@ -103,24 +107,159 @@ Sidebar
 /*
  * Sidebar
  */
+ .hamburger {
+	position: fixed;
+	top: 20px;  
+	z-index: 999;
+	display: block;
+	width: 32px;
+	height: 32px;
+	margin-left: 45px;
+	background: transparent;
+	border: none;
+  }
+  .hamburger:hover,
+  .hamburger:focus,
+  .hamburger:active {
+	outline: none;
+  }
+  .hamburger.is-closed:before {
+	content: '';
+	display: block;
+	width: 100px;
+	font-size: 14px;
+	color: #fff;
+	line-height: 32px;
+	text-align: center;
+	opacity: 0;
+	-webkit-transform: translate3d(0,0,0);
+	-webkit-transition: all .35s ease-in-out;
+  }
+  .hamburger.is-closed:hover:before {
+	opacity: 1;
+	display: block;
+	-webkit-transform: translate3d(-100px,0,0);
+	-webkit-transition: all .35s ease-in-out;
+  }
+  
+  .hamburger.is-closed .hamb-top,
+  .hamburger.is-closed .hamb-middle,
+  .hamburger.is-closed .hamb-bottom,
+  .hamburger.is-open .hamb-top,
+  .hamburger.is-open .hamb-middle,
+  .hamburger.is-open .hamb-bottom {
+	position: absolute;
+	left: 0;
+	height: 4px;
+	width: 100%;
+  }
+  .hamburger.is-closed .hamb-top,
+  .hamburger.is-closed .hamb-middle,
+  .hamburger.is-closed .hamb-bottom {
+	background-color: #FFFFFF;
+  }
+  .hamburger.is-closed .hamb-top { 
+	top: 5px; 
+	-webkit-transition: all .35s ease-in-out;
+  }
+  .hamburger.is-closed .hamb-middle {
+	top: 50%;
+	margin-top: -2px;
+  }
+  .hamburger.is-closed .hamb-bottom {
+	bottom: 5px;  
+	-webkit-transition: all .35s ease-in-out;
+  }
+  
+  .hamburger.is-closed:hover .hamb-top {
+	top: 0;
+	-webkit-transition: all .35s ease-in-out;
+  }
+  .hamburger.is-closed:hover .hamb-bottom {
+	bottom: 0;
+	-webkit-transition: all .35s ease-in-out;
+  }
+  .hamburger.is-open .hamb-top,
+  .hamburger.is-open .hamb-middle,
+  .hamburger.is-open .hamb-bottom {
+	background-color: #FFFFFF;
+  }
+  .hamburger.is-open .hamb-top,
+  .hamburger.is-open .hamb-bottom {
+	top: 50%;
+	margin-top: -2px;  
+  }
+  .hamburger.is-open .hamb-top { 
+	-webkit-transform: rotate(45deg);
+	-webkit-transition: -webkit-transform .2s cubic-bezier(.73,1,.28,.08);
+  }
+  .hamburger.is-open .hamb-middle { display: none; }
+  .hamburger.is-open .hamb-bottom {
+	-webkit-transform: rotate(-45deg);
+	-webkit-transition: -webkit-transform .2s cubic-bezier(.73,1,.28,.08);
+  }
+  .hamburger.is-open:before {
+	content: '';
+	display: block;
+	width: 100px;
+	font-size: 14px;
+	color: #000000;
+	line-height: 32px;
+	text-align: center;
+	opacity: 0;
+	-webkit-transform: translate3d(0,0,0);
+	-webkit-transition: all .35s ease-in-out;
+  }
+  .hamburger.is-open:hover:before {
+	opacity: 1;
+	display: block;
+	-webkit-transform: translate3d(-100px,0,0);
+	-webkit-transition: all .35s ease-in-out;
+  }
+@media only screen and (max-width: 767px){
+	.hamburger{
+		&.is-open{
+			top:16px;
+			margin-left:185px;
+		}
+	}
+}
 
+  
  .sidebar {
-	background: rgb(233,233,233);
-	background: linear-gradient(90deg, rgba(233,233,233,1) 0%, rgba(239,239,239,1) 47%, rgba(255,255,255,1) 100%);
+	&.active{
+		width:0;
+		left: -$sidebar-width;
+	}
+	@media only screen and (max-width: 767px){
+		width:0;
+		left:-$sidebar-width;
+		&.active{
+			width:$sidebar-width;
+			left:0;
+		}
+	}
+
+	background: #0c0c0e;
 	.logo{
 		font-weight: 300;
 		a{
-			color: #000000;
+			color: #FFFFFF;
 			width: 100%;
 			display: block;
 			line-height: 1em;
 			font-size: 45px;
 			padding: 10px 0 10px 15px;
 			transition: 0.15s all linear;
+			text-decoration: none;
 			&:hover{
-				color:#000000;
+				color:#FFFFFF;
 				border: none;
 				text-decoration: none;
+			}
+			.jobTitle{
+				font-size:32px;
+				border-top:1px solid #FFFFFF;
 			}
 		}
 	}
@@ -134,17 +273,22 @@ Sidebar
 		ul{
 			&.nav{
 				li{
+					padding:0 16px;
 					a{
-						display: block;
-						padding: .6rem 1.1rem;
-						color:#000000;
+						display: inline-block;
+						text-decoration: none;
+						padding: 18px 0 3px 0px;
+						color:#FFFFFF;
 						background:none;
 						transition:.25s all linear;
+						border-bottom:1px solid #000000;
 						&:hover{
-							text-decoration: none;
-							background: rgb(92,204,205);
-							background: linear-gradient(90deg, #5CCCCC 0%, #d7d7d7 20%, #ffffff 100%);
-							color: #000000;
+							border-bottom:1px solid #FFFFFF;
+						}
+					}
+					&.current-menu-item{
+						a{
+							border-bottom:1px solid #FFFFFF;
 						}
 					}
 				}
@@ -178,7 +322,11 @@ Homepage
 	justify-content: center;
 	align-items: center;
 	.home-content{
-		margin-right:45%;
+		margin-left:33%;
+		color:$play-btn-foreground;
+		@media only screen and (max-width: 767px){
+			margin-left: 0%;
+		}
 		h2{
 			font-size: 60px;
 		}
@@ -235,12 +383,12 @@ Homepage
 			opacity: 1;
 			width: 16px;
 			height: 20px;
-			background: #2c3e50;
+			background: #FFFFFF;
 			position: absolute;
 			right: 4px;
 			top: -10px;
-			border-left: 6px solid #2c3e50;
-			box-shadow: inset 4px 0 0 0 #fff;
+			border-left: 6px solid #FFFFFF;
+			box-shadow: inset 4px 0 0 0 #000000;
 		}
 	}
 }
@@ -261,7 +409,7 @@ Archive Styles
 		margin: 0 0 45px 0;
 		min-width: 320px;
 		max-width: 480px;
-		max-height: 220px;
+		max-height: 320px;
 		width: 100%;
 		background: #000000;
 		text-align: center;
@@ -269,6 +417,9 @@ Archive Styles
 -webkit-box-shadow: 5px 5px 16px 0px rgba(0,0,0,0.54);
    -moz-box-shadow: 5px 5px 16px 0px rgba(0,0,0,0.54);
 		box-shadow: 5px 5px 16px 0px rgba(0,0,0,0.54);
+		.img-placement{
+			min-height: 320px;
+		}
 		img {
 			position: relative;
 			display: block;
@@ -350,6 +501,10 @@ Archive Styles
 			p {
 				padding: 0 10px 0 0;
 				width: 50%;
+				overflow: hidden;
+				display: -webkit-box;
+				-webkit-line-clamp: 6;
+				-webkit-box-orient: vertical;
 				border-right: 1px solid #fff;
 				text-align: right;
 				opacity: 0;
@@ -361,7 +516,16 @@ Archive Styles
 		}
 	}
 }
-
+/********************************************
+Contact Form 7
+*********************************************/
+form{
+	&.wpcf7-form{
+		label{
+			display:block;
+		}
+	}
+}
 /********************************************
 Password Required Pages
 *********************************************/

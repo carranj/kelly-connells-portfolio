@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en"> 
   <head>
     <meta charset="utf-8">
@@ -13,3 +13,8 @@
 
 <body <?php body_class(); ?>>
   <div id="wrapper">
+  <button type="button" class="hamburger animated fadeInLeft is-closed" data-toggle="offcanvas">
+    <span class="hamb-top"></span>
+    <span class="hamb-middle"></span>
+    <span class="hamb-bottom"></span>
+  </button>

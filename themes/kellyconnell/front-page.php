@@ -9,7 +9,7 @@
             <h2><?php the_field('featured_line_1'); ?></h2>
             <h2><?php the_field('featured_line_2'); ?></h2>
             <h2><?php the_field('featured_line_3'); ?></h2>
-            <a href="#" title="Play video" class="play"></a>
+            <a href="#" title="Play video" class="play active"></a>
         </div>
     </div>
 </div>
