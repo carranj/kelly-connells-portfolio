@@ -22,13 +22,9 @@ jQuery(document).ready(function($) {
   });
 
   
-
   icon.click(function() {
-
     icon.hasClass('active') ?  sound.pause() : sound.play();
-
     icon.toggleClass('active');
-
   });
 
   // hamburger menu
