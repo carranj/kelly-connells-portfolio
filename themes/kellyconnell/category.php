@@ -2,7 +2,7 @@
 <div class="clear-fix"></div>
 <div class="col-sm-12 paddingNone internalPagesImageDiv" style="background-image: url(<?php echo site_url(); ?>/wp-content/uploads/2015/12/internalpage-pullups-height530px.jpg);">  
   <section class="text-center internalPagesTitle">
-    <h1>BLOG</h1>  
+    <h1><?php single_cat_title(); ?></h1> 
   </section>
 </div>
 <div class="clear-fix"></div>
@@ -31,15 +31,20 @@
                       <span>Categories: </span><?php the_category(', '); ?>
                     </div>
                     <?php 
-                      // Get the post content
-                      $content = get_the_content();
+                      $content = '';
+                      // Check if the flexible content field exists
+                      if (have_rows('flexible_content')) :
+                          while (have_rows('flexible_content')) : the_row();
+                              // Example of handling different layout types
+                              if (get_row_layout() == 'full_width_wysiwyg'):
+                                  $full_width_content = get_sub_field('full_width_wysiwyg');
+                                  $content .= $full_width_content; // Concatenate content
+                              endif;
+                          endwhile;
+                      endif;
 
-                      // Optionally apply filters to format the content
-                      $formatted_content = apply_filters('the_content', $content);
-                      
                       // Trim to 40 words
-                      $trimmed_content = wp_trim_words($formatted_content, 40, '...');
-                      
+                      $trimmed_content = wp_trim_words($content, 40, '...');
                       echo '<p class="post-preview">' . $trimmed_content . '</p>';
                     ?>
                     <a style="font-family: 'Oswald', sans-serif;" href="<?php the_permalink(); ?>">
@@ -86,18 +91,22 @@
                       </div>
                       <?php 
                           // Initialize a variable to hold all content
+                          $content = '';
 
-                          // Get the post content
-                          $content = get_the_content();
-                          
-                          // Optionally apply filters to format the content
-                          $formatted_content = apply_filters('the_content', $content);
-                          
+                          // Check if the flexible content field exists
+                          if (have_rows('flexible_content')) :
+                              while (have_rows('flexible_content')) : the_row();
+                                  // Example of handling different layout types
+                                  if (get_row_layout() == 'full_width_wysiwyg'):
+                                      $full_width_content = get_sub_field('full_width_wysiwyg');
+                                      $content .= $full_width_content; // Concatenate content
+                                  endif;
+                              endwhile;
+                          endif;
+
                           // Trim to 40 words
-                          $trimmed_content = wp_trim_words($formatted_content, 40, '...');
-                          
+                          $trimmed_content = wp_trim_words($content, 40, '...');
                           echo '<p class="post-preview">' . $trimmed_content . '</p>';
-
                       ?>
                       <a style="font-family: 'Oswald', sans-serif;" href="<?php the_permalink(); ?>">
                           <i class="fa fa-link"></i> Read More

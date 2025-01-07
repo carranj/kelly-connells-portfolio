@@ -13,7 +13,7 @@
         
             <?php 
                 $i = 0; 
-                $args = array( 'post_type' => 'teaching_materials', 'posts_per_page' => -1 );
+                $args = array( 'post_type' => 'professional_growth', 'posts_per_page' => -1 );
                 $the_query = new WP_Query( $args ); 
                 
                 if ( $the_query->have_posts() ) :
@@ -24,16 +24,16 @@
                         <div class="row">
                     <?php endif; ?>
                         <div class="col-md-4">
-                        <p class="category">Category: <?php the_category( ', ', 'multiple' ); ?></p>
                             <?php
                                 if( have_rows('teaching_materials') ):
+                                   
 
                                     while ( have_rows('teaching_materials') ) : the_row();
-                                    $image = get_sub_field('preview_image');
+                                    $src = wp_get_attachment_image_src(get_post_thumbnail_id($queried_post->ID), '') ;
                                 ?>
                                 <div class="grid">
-                                    <figure class="effect-milo">
-                                        <img class="" src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
+                                    <figure class="effect-milo professional-growth">
+                                    <div class="img-placement"></div>
                                         <figcaption>
                                             <h2><?php the_title(); ?></h2>
                                             <p><?php the_sub_field('teaching_resource_description'); ?></p>

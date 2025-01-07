@@ -6,7 +6,7 @@
 		</div>
 		<?php
 		if ( ! post_password_required() ):
-			get_template_part( 'page-templates/flexible_content/flexible_content' );
+			get_template_part( 'page-templates/gallery' );
 		else:
 		?>
 		<div class="row">
