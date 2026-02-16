@@ -10,6 +10,7 @@
             <h2><?php the_field('featured_line_2'); ?></h2>
             <h2><?php the_field('featured_line_3'); ?></h2>
             <a href="#" title="Play video" class="play active"></a>
+            <span>Peet Jr. High Symphonic Band | Bazaar (Standridge)<br/>Dir. Connell</span>
         </div>
     </div>
 </div>

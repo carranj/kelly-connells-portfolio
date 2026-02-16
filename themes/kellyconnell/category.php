@@ -27,9 +27,6 @@
                   <div class="col-md-7">
                     <h2><a href ="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
                     <p><em><?php echo get_the_date('l, F jS, Y'); ?></em></p>
-                    <div class="post-categories">
-                      <span>Categories: </span><?php the_category(', '); ?>
-                    </div>
                     <?php 
                       $content = '';
                       // Check if the flexible content field exists
@@ -86,9 +83,6 @@
                   <div class="col-md-7">
                       <h2><a href ="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
                       <p><em><?php echo get_the_date('l, F jS, Y'); ?></em></p>
-                      <div class="post-categories">
-                        <span>Categories: </span><?php the_category(', '); ?>
-                      </div>
                       <?php 
                           // Initialize a variable to hold all content
                           $content = '';

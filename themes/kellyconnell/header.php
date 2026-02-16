@@ -25,6 +25,7 @@
 
 
 <body <?php body_class(); ?>>
+
   <div id="wrapper">
   <button type="button" class="hamburger animated fadeInLeft is-closed" data-toggle="offcanvas">
     <span class="hamb-top"></span>

@@ -14,7 +14,7 @@ jQuery(document).ready(function($) {
 
   var audioFilePath = 'wp-content/themes/kellyconnell/audio/';
 
-  var nameOfSong = 'andante_et_rondo_op._25__ii._rondo_2.mp3'; 
+  var nameOfSong = 'Peet_Symphonic_Bazaar_by_Randall_Standridge.mp3'; 
 
   var sound = new Howl({
     src: [audioFilePath + nameOfSong],
@@ -22,9 +22,13 @@ jQuery(document).ready(function($) {
   });
 
   
+
   icon.click(function() {
+
     icon.hasClass('active') ?  sound.pause() : sound.play();
+
     icon.toggleClass('active');
+
   });
 
   // hamburger menu
