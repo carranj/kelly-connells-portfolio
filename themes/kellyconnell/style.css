@@ -24,6 +24,11 @@ Universal
   clear: both;
 }
 
+.alignleft {
+  float: left;
+  margin: 0 1.5em 1em 0;
+}
+
 body {
   font-family: "Work Sans", sans-serif;
   font-weight: 300;
@@ -36,7 +41,7 @@ body .container-fluid {
   background: radial-gradient(circle, rgb(0, 0, 0) 0%, rgb(43, 42, 46) 119%, rgb(38, 38, 38) 100%);
 }
 body .container-fluid img {
-  width: 100%;
+  max-width: 100%;
   height: auto;
 }
 

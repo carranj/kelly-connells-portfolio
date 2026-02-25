@@ -33,6 +33,11 @@ Universal
 .clear-fix {
 	clear: both;
 }
+.alignleft {
+  float: left;
+  margin: 0 1.5em 1em 0;
+}
+
 body {
 	font-family: 'Work Sans', sans-serif;
 	font-weight: 300;
@@ -43,7 +48,7 @@ body {
 		background: rgb(0,0,0);
 		background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(43,42,46,1) 119%, rgba(38,38,38,1) 100%);
 		img{
-			width:100%;
+			max-width: 100%;
 			height:auto;
 		}
 	}
